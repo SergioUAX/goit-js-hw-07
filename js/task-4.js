@@ -1,49 +1,32 @@
-const getTotalBalanceByGender = (users, gender) => { 
-    return users
-        .filter(user => user.gender === gender)
-        .reduce((totalBalance, user) => {
-            return totalBalance + user.balance;
-        }, 0);
-};
+const loginForm = document.querySelector(".login-form");
+const loginFormEmail = loginForm.elements.email;
+const loginFormPassword = loginForm.elements.password;
 
-const clients = [
-	{
-    name: "Moore Hensley",
-    gender: "male",
-    balance: 2811
-  },
-  {
-    name: "Sharlene Bush",
-    gender: "female",
-    balance: 3821
-  },
-  {
-    name: "Ross Vazquez",
-    gender: "male",
-    balance: 3793
-  },
-  {
-    name: "Elma Head",
-    gender: "female",
-    balance: 2278
-  },
-  {
-    name: "Carey Barr",
-    gender: "male",
-    balance: 3951
-  },
-  {
-    name: "Blackburn Dotson",
-    gender: "male",
-    balance: 1498
-  },
-  {
-    name: "Sheree Anthony",
-    gender: "female",
-    balance: 2764
-  }
-];
+loginForm.classList.add("task4-form");
+loginForm.querySelectorAll("label").forEach(label => {
+    label.classList.add("task4-label");
+});
+loginFormEmail.classList.add("task4-input");
+loginFormPassword.classList.add("task4-input");
+loginForm.querySelector("button").classList.add("task4-button");
+loginForm.querySelector("button").textContent = "Log in";
 
-console.log(getTotalBalanceByGender(clients, "male")); // 12053
+loginFormEmail.setAttribute("type", "text");
 
-console.log(getTotalBalanceByGender(clients, "female")); // 8863
+loginForm.addEventListener("submit", handleSubmit);
+
+function handleSubmit(event) { 
+    event.preventDefault();
+    const email = loginFormEmail.value.trim();
+    const password = loginFormPassword.value.trim();
+    const result = {        
+    };
+    if (email && password) { 
+        result[loginFormEmail.name] = email;
+        result[loginFormPassword.name] = password;
+        console.log(result);
+        loginForm.reset();
+    } else { 
+        alert("All form fields must be filled in");
+    }
+}
